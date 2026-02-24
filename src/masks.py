@@ -4,7 +4,7 @@ def get_mask_card_number(card_number: int) -> str:
 
     Маска представляет собой строку вида:
     XXXX XX** **** XXXX
-    Где XXXX - первые 4 цифры, XXXX - последние 4 цифры
+    Где XXXX - первые 4 цифры, XXXX - последние 4 цифрыrm
     """
     card_str = str(card_number)
 
