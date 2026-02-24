@@ -1,9 +1,21 @@
-from src.masks import get_mask_card_number, get_mask_account
+"""
+Модуль для работы с банковскими картами и счетами.
+Содержит функции маскировки и форматирования.
+"""
 
-print("1. Импорты работают")
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def get_date(date_string: str) -> str:
+    """
+    Преобразует дату из формата ISO в формат ДД.ММ.ГГГГ.
+
+    Аргументы:
+        date_string (str): Дата в формате ISO (например, "2024-03-11T02:26:18.671407")
+
+    Возвращает:
+        str: Дата в формате "ДД.ММ.ГГГГ" (например, "11.03.2024")
+    """
     print("2. get_date вызвана")
     date_part = date_string.split('T')[0]
     year, month, day = date_part.split('-')
@@ -11,6 +23,19 @@ def get_date(date_string: str) -> str:
 
 
 def mask_account_card(card_info: str) -> str:
+    """
+    Маскирует номер карты или счета в зависимости от типа.
+
+    Аргументы:
+        card_info (str): Строка с типом и номером (например, "Visa Platinum 7000792289606361"
+                         или "Счет 73654108430135874305")
+
+    Возвращает:
+        str: Строка с замаскированным номером
+
+    Raises:
+        ValueError: Если формат строки неверный или номер карты содержит не 16 цифр
+    """
     print("3. mask_account_card вызвана")
     print(f"4. Получили: {card_info}")
 
