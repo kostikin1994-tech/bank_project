@@ -3,6 +3,7 @@
 Содержит функции маскировки и форматирования.
 """
 
+from datetime import datetime
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -16,10 +17,11 @@ def get_date(date_string: str) -> str:
     Возвращает:
         str: Дата в формате "ДД.ММ.ГГГГ" (например, "11.03.2024")
     """
-    print("2. get_date вызвана")
-    date_part = date_string.split('T')[0]
-    year, month, day = date_part.split('-')
-    return f"{day}.{month}.{year}"
+    try:
+        date_obj = datetime.fromisoformat(date_string)
+        return date_obj.strftime("%d.%m.%Y")
+    except ValueError:
+        raise ValueError("Неверный формат даты")
 
 
 def mask_account_card(card_info: str) -> str:
