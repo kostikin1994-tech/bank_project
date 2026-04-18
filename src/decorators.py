@@ -9,7 +9,7 @@ def log(filename = None):
         def wrapper(*args, **kwargs):
             try:
                 result = func(*args, **kwargs)
-                logging.info(f"{func.__name__} ok. Result: {result}")
+                logging.info(f"{func.__name__} ok")
                 return result
             except Exception as e:
                 logging.error(f'{func.__name__} error: {e}. Inputs: {args}, {kwargs}')
