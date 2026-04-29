@@ -1,10 +1,11 @@
 import logging
 
-def log(filename = None):
+def log(filename=None):
     if filename:
         logging.basicConfig(filename=filename, level=logging.INFO)
     else:
         logging.basicConfig(level=logging.INFO)
+
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
@@ -12,14 +13,8 @@ def log(filename = None):
                 logging.info(f"{func.__name__} ok")
                 return result
             except Exception as e:
-                logging.error(f'{func.__name__} error: {e}. Inputs: {args}, {kwargs}')
+                logging.error(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
                 raise e
         return wrapper
     return decorator
-
-@log(filename="app.log")
-def add(a, b):
-    return a + b
-
-print(add(1, 1))
 
