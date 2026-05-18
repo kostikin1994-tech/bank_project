@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def log(filename=None):
     def decorator(func):
         @wraps(func)
@@ -7,21 +8,19 @@ def log(filename=None):
             try:
                 result = func(*args, **kwargs)
                 log_message = f"{func.__name__} ok"
-            except Exception as e:
-                log_message = f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}"
-                if filename:
-                    with open(filename, "a", encoding="utf-8") as f:
-                        f.write(log_message + "\n")
-                else:
-                    print(log_message)
-                raise e
-            else:
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
                         f.write(log_message + "\n")
                 else:
                     print(log_message)
                 return result
+            except Exception as e:
+                log_message = f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}"
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(log_message + "\n")
+                else:
+                    print(log_message)
+                raise e
         return wrapper
     return decorator
-

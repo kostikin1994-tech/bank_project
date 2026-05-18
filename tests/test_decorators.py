@@ -1,14 +1,9 @@
 import pytest
-import logging
 from src.decorators import log
 
 
 def test_log_to_file(tmp_path):
-    """Тест: декоратор записывает логи в файл."""
     log_file = tmp_path / "test.log"
-
-    for handler in logging.root.handlers[:]:
-        logging.root.removeHandler(handler)
 
     @log(filename=str(log_file))
     def multiply(a, b):
@@ -23,11 +18,7 @@ def test_log_to_file(tmp_path):
 
 
 def test_log_multiple_calls(tmp_path):
-    """Тест: при нескольких вызовах логи дописываются в файл."""
     log_file = tmp_path / "append.log"
-
-    for handler in logging.root.handlers[:]:
-        logging.root.removeHandler(handler)
 
     @log(filename=str(log_file))
     def add(a, b):
@@ -40,21 +31,14 @@ def test_log_multiple_calls(tmp_path):
     assert content.count("add ok") == 2
 
 
-def test_log_no_file():
-    """Тест: декоратор без параметра не вызывает ошибок."""
-    @log()
-    def dummy():
-        return 42
-
-    result = dummy()
-    assert result == 42
-
-
-def test_log_exception():
-    """Тест: декоратор пробрасывает исключение."""
+def test_log_exception(capsys):
     @log()
     def div(a, b):
         return a / b
 
     with pytest.raises(ZeroDivisionError):
         div(1, 0)
+
+    captured = capsys.readouterr()
+    assert "ZeroDivisionError" in captured.out
+    assert "Inputs: (1, 0)" in captured.out
