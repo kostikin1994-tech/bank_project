@@ -40,5 +40,5 @@ def test_log_exception(capsys):
         div(1, 0)
 
     captured = capsys.readouterr()
-    assert "ZeroDivisionError" in captured.out
+    assert "division by zero" in captured.out
     assert "Inputs: (1, 0)" in captured.out
