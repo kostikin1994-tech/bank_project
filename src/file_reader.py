@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 
 def pandas_read_csv(file_name):
@@ -17,6 +18,22 @@ def pandas_read_excel(file_name):
         df = pd.read_excel(file_name)
         return df.to_dict('records')
     except FileNotFoundError:
+        return []
+    except Exception:
+        return []
+
+def pandas_read_json(file_name):
+    '''Функция для чтения файлов формата JSON, возвращает список словарей.'''
+    try:
+        with open(file_name, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            if isinstance(data, list):
+                return data
+            else:
+                return []
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
         return []
     except Exception:
         return []

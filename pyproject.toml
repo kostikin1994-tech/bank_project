@@ -2,6 +2,7 @@
 
 [tool.poetry.dependencies]
 python = "^3.9"
+openpyxl = "^3.1.5"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^6.0"

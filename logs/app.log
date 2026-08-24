@@ -1,4 +1,0 @@
-2026-07-27 22:38:42,466 - src.utils - INFO - Чтение файла: data/operations.json
-2026-07-27 22:38:42,466 - src.utils - INFO - Чтение файла: ../data/operations.json
-2026-07-27 22:38:42,468 - src.utils - INFO - Успешно прочитано 101 записей
-2026-07-27 22:38:42,468 - src.utils - INFO - Чтение файла: ../data/not_found.json
