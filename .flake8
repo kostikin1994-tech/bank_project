@@ -1,4 +1,4 @@
 [flake8]
+exclude = .git, __pycache__, build, dist, venv, .venv, .idea
 max-line-length = 119
 extend-ignore = E203
-exclude = .git,__pycache__,build,dist
